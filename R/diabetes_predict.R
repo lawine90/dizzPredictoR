@@ -176,7 +176,7 @@ diabetes_predict <- function(mode, dataframe = NULL){
       D_AT = scale(dataframe$D_AT, center = mean(Diabetes$D_AT), scale = stats::sd(Diabetes$D_AT))
     )
 
-    pred_result <- data.frame(prob = predict(Diabetes_Stack, dataframe, type = "prob"))
+    pred_result <- data.frame(prob = 1-predict(Diabetes_Stack, dataframe, type = "prob"))
     pred_result$class <- ifelse(pred_result$prob >= 0.5, "diabetes", "normal")
 
     pred_results <- lapply(Diabetes_Models, caret::predict.train, newdata = dataframe, type = "prob")
@@ -192,3 +192,6 @@ diabetes_predict <- function(mode, dataframe = NULL){
   }
   return(final_result)
 }
+
+
+devtools::install_github('lawine90/dizzPredictoR')

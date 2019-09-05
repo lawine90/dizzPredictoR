@@ -129,7 +129,7 @@ hypertension_predict <- function(mode, dataframe = NULL){
       E_DN = scale(dataframe$E_DN, center = mean(Hypertensions$E_DN), scale = stats::sd(Hypertensions$E_DN))
     )
 
-    pred_result <- data.frame(prob = predict(Hypertension_Stack, dataframe, type = "prob"))
+    pred_result <- data.frame(prob = 1-predict(Hypertension_Stack, dataframe, type = "prob"))
     pred_result$class <- ifelse(pred_result$prob >= 0.5, "hypertension", "normal")
 
     pred_results <- lapply(Hypertension_Models, caret::predict.train, newdata = dataframe, type = "prob")
