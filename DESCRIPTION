@@ -1,11 +1,27 @@
 Package: dizzPredictoR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Disease Prediction for Hypertension and Diabetes(Type 2) using Lifestyle Factors
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Date: 2019-09-05
+Authors@R: person("Lawine", "Seo", email = 'power1sky@gmail.com', role = c('aut', 'cre'))
+Description: This package have two function for predicting risk possibilities of hypertension and diabetes
+    Using machine learning and data of the 7th Korea National Health and Nutrition Examination Survey in 2016,
+    pre-trained models are contained.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    caret,
+    caretEnsemble,
+    ranger,
+    e1071,
+    kernlab,
+    earth,
+    stats,
+    utils,
+    dplyr,
+    pls,
+    crayon,
+    tibble
+RoxygenNote: 6.1.1
+Depends: R (>= 3.4.3)
