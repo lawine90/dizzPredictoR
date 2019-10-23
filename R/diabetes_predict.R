@@ -143,7 +143,7 @@ diabetes_predict <- function(mode, dataframe = NULL){
     pred_results <- dplyr::bind_rows(lapply(Diabetes_Models, caret::predict.train, newdata = new_data, type = "prob"))
 
     predictor_count <- sum(pred_results$X1 >= 0.5)
-    predictor_max <- round(max(pred_results), 4)*100
+    predictor_max <- round(max(pred_results$X1), 4)*100
 
     # print summary.
     cat("Diabetes Prediction Result.\n")
@@ -183,6 +183,8 @@ diabetes_predict <- function(mode, dataframe = NULL){
     pred_results <- lapply(pred_results, function(x) tibble::rownames_to_column(x, "ID"))
     #pred_results <- lapply(pred_results, function(x) dplyr::mutate(x, model = names(x)))
     pred_results <- dplyr::bind_rows(pred_results)
+    colnames(pred_results)[colnames(pred_results) == "X0"] <- 'normal'
+    colnames(pred_results)[colnames(pred_results) == "X1"] <- 'diabetes'
 
     final_result <- list(
       Disease = "Diabetes.",
